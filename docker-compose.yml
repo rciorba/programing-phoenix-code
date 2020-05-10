@@ -1,0 +1,9 @@
+version: '2'
+services:
+  postgres:
+    image: postgres:11-alpine
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: "supersecure"
+    ports:
+      - "5422:5432"
