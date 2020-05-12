@@ -2,6 +2,7 @@ defmodule RumblrWeb.UserController do
   use RumblrWeb, :controller
 
   alias Rumblr.Accounts
+  alias Rumblr.Accounts.User
 
   def index(conn, _params) do
     users = Accounts.list_users()
