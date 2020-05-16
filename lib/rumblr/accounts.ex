@@ -27,4 +27,15 @@ defmodule Rumblr.Accounts do
     # )
   end
 
+  def change_user(%User{} = user) do
+    User.changeset(user, %{})
+  end
+
+  def create_user(attrs \\ %{}) do
+    %User{}
+    |> User.changeset(attrs)
+    |> IO.inspect()
+    |> Repo.insert()
+  end
+
 end

@@ -9,4 +9,10 @@ defmodule Rumblr.Accounts.User do
     timestamps()
   end
 
+  def changeset(user, attrs) do
+    user
+    |> cast(attrs, [:name, :username])
+    |> validate_required([:name, :username])
+    |> validate_length(:username, min: 3, max: 20)
+  end
 end
