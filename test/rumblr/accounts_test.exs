@@ -5,7 +5,6 @@ defmodule Rumblr.Accounts.AcountsTest do
   alias Rumblr.Accounts
   alias Rumblr.Accounts.User
 
-
   # test "Account.list_user" do
   #   assert Accounts.list_users() == [
   #     %User{id: "1", name: "Jose Valim", username: "josev"},
@@ -19,6 +18,10 @@ defmodule Rumblr.Accounts.AcountsTest do
   end
 
   test "Accounts.get_user_by" do
-    assert Accounts.get_user_by(%{username: "bruce"}) == %User{id: "2", name: "Bruce Wayne", username: "bruce"}
+    assert Accounts.get_user_by(%{username: "bruce"}) == %User{
+             id: "2",
+             name: "Bruce Wayne",
+             username: "bruce"
+           }
   end
 end

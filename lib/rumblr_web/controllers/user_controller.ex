@@ -3,9 +3,10 @@ defmodule RumblrWeb.UserController do
 
   alias Rumblr.Accounts
   alias Rumblr.Accounts.User
+  plug :authenticate when action in [:index, :show]
 
   def new(conn, _params) do
-    changeset = Accounts.change_user(%User{})
+    changeset = Accounts.change_registration(%User{})
     IO.inspect(changeset)
     render(conn, "new.html", changeset: changeset)
   end
@@ -15,15 +16,16 @@ defmodule RumblrWeb.UserController do
     render(conn, "index.html", users: users)
   end
 
-  def show(conn,  %{"id" => user_id}) do
+  def show(conn, %{"id" => user_id}) do
     user = Accounts.get_user(user_id)
     render(conn, "show.html", user: user)
   end
 
   def create(conn, %{"user" => user_params}) do
-    case Accounts.create_user(user_params) do
+    case Accounts.register_user(user_params) do
       {:ok, user} ->
         conn
+        |> RumblrWeb.Auth.login(user)
         |> put_flash(:info, "#{user.username} created!")
         |> redirect(to: Routes.user_path(conn, :index))
 
@@ -32,4 +34,14 @@ defmodule RumblrWeb.UserController do
     end
   end
 
+  defp authenticate(conn, _opts) do
+    if conn.assigns.current_user do
+      conn
+    else
+      conn
+      |> put_flash(:error, "You must be logged in!")
+      |> redirect(to: Routes.page_path(conn, :index))
+      |> halt()
+    end
+  end
 end

@@ -9,6 +9,7 @@
   <% end %>
   <p><%= text_input f, :name, placeholder: "Name" %> <%= error_tag f, :name %></p>
   <p><%= text_input f, :username, placeholder: "Username" %> <%= error_tag f, :username %></p>
+  <p><%= password_input f, :password, placeholder: "Password" %> <%= error_tag f, :password %></p>
 </div>
 <%= submit "Create" %>
 <% end %>
