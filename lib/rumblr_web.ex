@@ -23,6 +23,7 @@ defmodule RumblrWeb do
 
       import Plug.Conn
       import RumblrWeb.Gettext
+      import RumblrWeb.Auth, only: [authenticate_user: 2]
       alias RumblrWeb.Router.Helpers, as: Routes
     end
   end

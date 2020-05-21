@@ -1,5 +1,6 @@
 defmodule RumblrWeb.Router do
   use RumblrWeb, :router
+  import RumblrWeb.Auth
 
   pipeline :browser do
     plug :accepts, ["html"]
@@ -20,6 +21,12 @@ defmodule RumblrWeb.Router do
     get "/", PageController, :index
     resources "/users", UserController, only: [:index, :show, :new, :create]
     resources "/sessions", SessionController, only: [:new, :create, :delete]
+  end
+
+  scope "/manage", RumblrWeb do
+    pipe_through [:browser, :authenticate_user]
+
+    resources "/videos", VideoController
   end
 
   # Other scopes may use custom stacks.
