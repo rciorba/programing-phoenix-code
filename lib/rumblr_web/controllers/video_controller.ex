@@ -4,6 +4,8 @@ defmodule RumblrWeb.VideoController do
   alias Rumblr.Multimedia
   alias Rumblr.Multimedia.Video
 
+  plug :load_categories when action in [:new, :edit, :create, :update]
+
   def action(conn, _) do
     args = [conn, conn.params, conn.assigns.current_user]
 
@@ -13,7 +15,10 @@ defmodule RumblrWeb.VideoController do
       action_name(conn),
       args
     )
+  end
 
+  defp load_categories(conn, _) do
+    assign(conn, :categories, Multimedia.list_categories_alphabetical())
   end
 
   def index(conn, _params, current_user) do

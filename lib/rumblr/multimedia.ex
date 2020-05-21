@@ -7,6 +7,7 @@ defmodule Rumblr.Multimedia do
   alias Rumblr.Repo
 
   alias Rumblr.Multimedia.Video
+  alias Rumblr.Multimedia.Category
   alias Rumblr.Accounts.User
 
   @doc """
@@ -120,5 +121,15 @@ defmodule Rumblr.Multimedia do
   defp user_videos_query(query, %User{id: user_id}) do
     # wut? Why do we pin user_id here? It's on the RHS of a match...
     from(v in query, where: v.user_id == ^user_id)
+  end
+
+  def create_category!(name) do
+    Repo.insert!(%Category{name: name}, on_conflict: :nothing)
+  end
+
+  def list_categories_alphabetical() do
+    Category
+    |> Category.alphabetical()
+    |> Repo.all()
   end
 end
