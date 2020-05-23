@@ -37,7 +37,11 @@ defmodule Rumblr.Multimedia do
       ** (Ecto.NoResultsError)
 
   """
-  def get_video!(id), do: Repo.get!(Video, id)
+  def get_video!(id, options \\ []) do
+    Video
+    |> preload(^Keyword.get(options, :preload, []))
+    |> Repo.get!(id)
+  end
 
   @doc """
   Creates a video.

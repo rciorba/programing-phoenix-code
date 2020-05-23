@@ -6,15 +6,15 @@ defmodule Rumblr.TestHelpers do
       attrs
       |> Enum.into(%{
         name: "Some Name",
-        username: "u#{System.unique_integer([:positive])}",
+        username: "user_#{System.unique_integer([:positive])}",
         password: attrs[:password] || "supersecret"
       })
       |> Accounts.register_user()
 
-    user
+    %Accounts.User{user | password: nil}
   end
 
-  def video_fixture(%Accounts.User{} = user, attrs) do
+  def video_fixture(%Accounts.User{} = user, attrs \\ %{}) do
     attrs =
       Enum.into(
         attrs,
