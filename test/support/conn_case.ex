@@ -23,6 +23,7 @@ defmodule RumblrWeb.ConnCase do
       import Plug.Conn
       import Phoenix.ConnTest
       import RumblrWeb.ConnCase
+      import Rumblr.TestHelpers
 
       alias RumblrWeb.Router.Helpers, as: Routes
 

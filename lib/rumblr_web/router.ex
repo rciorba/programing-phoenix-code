@@ -18,7 +18,7 @@ defmodule RumblrWeb.Router do
   scope "/", RumblrWeb do
     pipe_through :browser
 
-    get "/", PageController, :index
+    resources "/", PageController, only: [:index]
     resources "/users", UserController, only: [:index, :show, :new, :create]
     resources "/sessions", SessionController, only: [:new, :create, :delete]
   end
