@@ -105,7 +105,6 @@ defmodule Rumblr.Multimedia do
     Video.changeset(video, attrs)
   end
 
-
   def list_user_videos(%User{} = user) do
     Video
     |> user_videos_query(user)

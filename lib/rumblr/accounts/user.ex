@@ -1,6 +1,7 @@
 defmodule Rumblr.Accounts.User do
   use Ecto.Schema
   import Ecto.Changeset
+  alias Rumblr.Accounts.Passwd
 
   schema "users" do
     field :name, :string
@@ -30,7 +31,7 @@ defmodule Rumblr.Accounts.User do
   defp put_pass_hash(changeset) do
     case changeset do
       %Ecto.Changeset{valid?: true, changes: %{password: pass}} ->
-        put_change(changeset, :password_hash, Pbkdf2.hash_pwd_salt(pass))
+        put_change(changeset, :password_hash, Passwd.hash(pass))
 
       _ ->
         changeset

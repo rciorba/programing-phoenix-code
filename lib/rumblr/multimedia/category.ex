@@ -19,5 +19,4 @@ defmodule Rumblr.Multimedia.Category do
   def alphabetical(query) do
     from cat in query, order_by: cat.name
   end
-
 end

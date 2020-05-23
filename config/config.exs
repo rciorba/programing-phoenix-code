@@ -8,7 +8,8 @@
 use Mix.Config
 
 config :rumblr,
-  ecto_repos: [Rumblr.Repo]
+  ecto_repos: [Rumblr.Repo],
+  passwd: Rumblr.Accounts.Passwd.Pbkdf2
 
 # Configures the endpoint
 config :rumblr, RumblrWeb.Endpoint,

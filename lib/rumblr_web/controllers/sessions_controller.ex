@@ -7,12 +7,15 @@ defmodule RumblrWeb.SessionController do
     render(conn, "new.html")
   end
 
-  def create(conn,
-    %{"session" => %{
-        "username" => username,
-        "password" => password,
-    }
-    }) do
+  def create(
+        conn,
+        %{
+          "session" => %{
+            "username" => username,
+            "password" => password
+          }
+        }
+      ) do
     # session = %{
     #   "username": username,
     #   "password": password,
@@ -39,5 +42,4 @@ defmodule RumblrWeb.SessionController do
     |> RumblrWeb.Auth.logout()
     |> redirect(to: Routes.page_path(conn, :index))
   end
-
 end

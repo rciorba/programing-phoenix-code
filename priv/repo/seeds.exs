@@ -12,5 +12,5 @@
 alias Rumblr.Multimedia
 
 for category <- ~w(erlang elixir phoenix ecto live-view) do
-    Multimedia.create_category!(category)
+  Multimedia.create_category!(category)
 end

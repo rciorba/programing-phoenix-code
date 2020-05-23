@@ -1,5 +1,4 @@
 defmodule RumblrWeb.Auth do
-
   import Plug.Conn
   import Phoenix.Controller
   alias RumblrWeb.Routes.Helpers, as: Routes
@@ -41,5 +40,4 @@ defmodule RumblrWeb.Auth do
       |> halt()
     end
   end
-
 end

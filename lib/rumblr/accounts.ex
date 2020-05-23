@@ -5,6 +5,7 @@ defmodule Rumblr.Accounts do
 
   alias Rumblr.Repo
   alias Rumblr.Accounts.User
+  alias Rumblr.Accounts.Passwd
 
   def list_users do
     Repo.all(User)
@@ -51,11 +52,14 @@ defmodule Rumblr.Accounts do
 
   def authenticate_by_username_and_password(username, password) do
     user = get_user_by(username: username)
+
     cond do
-      user && Pbkdf2.verify_pass(password, user.password_hash) ->
+      user && Passwd.check_pass(user, password) ->
         {:ok, user}
+
       user ->
         {:error, :unauthorized}
+
       true ->
         Pbkdf2.no_user_verify()
         {:error, :not_found}

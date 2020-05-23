@@ -5,6 +5,10 @@ use Mix.Config
 # The MIX_TEST_PARTITION environment variable can be used
 # to provide built-in test partitioning in CI environment.
 # Run `mix help test` for more information.
+
+config :rumblr,
+  passwd: Rumblr.Accounts.Passwd.Mock
+
 config :rumblr, Rumblr.Repo,
   username: "postgres",
   password: "supersecure",
@@ -21,3 +25,6 @@ config :rumblr, RumblrWeb.Endpoint,
 
 # Print only warnings and errors during test
 config :logger, level: :warn
+
+# config :pbkdf2_elixir,
+#   rounds: 1

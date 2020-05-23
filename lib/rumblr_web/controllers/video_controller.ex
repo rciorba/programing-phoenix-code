@@ -11,7 +11,8 @@ defmodule RumblrWeb.VideoController do
 
     # wut? what's the deal with apply?
     apply(
-      __MODULE__,  # expands to current module name as an atom
+      # expands to current module name as an atom
+      __MODULE__,
       action_name(conn),
       args
     )
