@@ -12,15 +12,29 @@
     <header>
       <section class="container">
         <nav role="navigation">
+          <ul>
           <%= if @current_user do %>
-          <%= @current_user.username %> |
-          <%= link "log out", to: Routes.session_path(@conn, :delete, @current_user), method: "delete" %>
+            <li>
+              <%= @current_user.username %>
+            </li>
+            <li>
+              <%= link "my videos", to: Routes.video_path(@conn, :index) %>
+            </li>
+            <li>
+              <%= link "log out", to: Routes.session_path(@conn, :delete, @current_user), method: "delete" %>
+            </li>
           <% else %>
-          <%= link "register", to: Routes.user_path(@conn, :new) %> |
-          <%= link "log in", to: Routes.session_path(@conn, :new) %>
+            <li>
+              <%= link "register", to: Routes.user_path(@conn, :new) %>
+            </li>
+            <li>
+              <%= link "log in", to: Routes.session_path(@conn, :new) %>
+            </li>
           <% end %>
           <%= if function_exported?(Routes, :live_dashboard_path, 2) do %>
-            | <%= link "LiveDashboard", to: Routes.live_dashboard_path(@conn, :home) %>
+            <li>
+              <%= link "LiveDashboard", to: Routes.live_dashboard_path(@conn, :home) %>
+            </li>
           <% end %>
         </nav>
       </section>
